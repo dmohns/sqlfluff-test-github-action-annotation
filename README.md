@@ -1,0 +1,1 @@
+# sqlfluff-test-github-action-annotation
