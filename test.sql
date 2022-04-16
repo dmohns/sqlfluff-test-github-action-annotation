@@ -1,0 +1,4 @@
+SELECT
+    TRUE,
+    "abc"
+;
