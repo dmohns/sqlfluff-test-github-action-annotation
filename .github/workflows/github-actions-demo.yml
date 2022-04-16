@@ -1,5 +1,5 @@
 name: GitHub Actions Demo
-on: [push]
+on: [pull_request]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -15,3 +15,14 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  sqlfluff-test-native-annotations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+      - run: |
+          pip install -U git+https://github.com/dmohns/sqlfluff.git@3106-Add-native-github-annotations
+      - run: |
+          sqlfluff lint --dialect ansi --format github-annotation-native test.sql
